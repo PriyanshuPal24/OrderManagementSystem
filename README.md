@@ -4,10 +4,10 @@
  (Modify/Cancel support), and round-trip latency tracking.
  
  Key Design Components:
- 1. Trading Window Control  - The OMS can only send orders between a configurable time window (e.g., 10 AM to 1 PM IST).
-                            - At the start time, sendLogon() is called.
-                            - At the end time, sendLogout() is called.
-                            - Orders outside this window are rejected.
+ 1. Trading Window Control:- The OMS can only send orders between a configurable time window (e.g., 10 AM to 1 PM IST).
+                             At the start time, sendLogon() is called.
+                             At the end time, sendLogout() is called.
+                             Orders outside this window are rejected.
  2. Throttling Orders - OMS sends a maximum of X orders per second (e.g., 100).
                       - Orders exceeding the limit are added to a queue and processed in the next available time slot.
                       - A ScheduledExecutorService runs every second to reset the counter and send queued orders.
